@@ -33,14 +33,14 @@ def package_vars(version_file):
 setup(
     name="forge",
     # Versions should comply with PEP440
-    version=package_vars("src/example/_version.py")["__version__"],
+    version=package_vars("forge/_version.py")["__version__"],
     description="Example python library",
     long_description=readme(),
     long_description_content_type="text/markdown",
     # NCATS "homepage"
-    url="https://www.us-cert.gov/resources/ncats",
+    url="https://",
     # The project's main homepage
-    download_url="https://github.com/cisagov/skeleton-python-library",
+    download_url="https://github.com/c",
     # Author details
     author="Adam Haskell",
     author_email="a.haskell@gmail.com",
@@ -67,9 +67,6 @@ setup(
     # What does your project relate to?
     keywords="skeleton",
     packages=find_packages(where="src"),
-    package_dir={"": "src"},
-    package_data={"example": ["data/*.txt"]},
-    py_modules=[splitext(basename(path))[0] for path in glob("src/*.py")],
     include_package_data=True,
     install_requires=["docopt", "setuptools >= 24.2.0", "schema"],
     extras_require={
@@ -86,7 +83,5 @@ setup(
             "pytest-cov",
             "pytest",
         ]
-    },
-    # Conveniently allows one to run the CLI tool as `example`
-    entry_points={"console_scripts": ["example = example.example:main"]},
+    }
 )

@@ -20,12 +20,9 @@ def sql_escape(string):
 
 
 def db_safe_name(name):
-    import inflect
-
     s1 = re.sub('([A-Z])', r'_\1', name)[1:]
     s1 = s1.split('_')
     s1 = list(map(lambda x: x.lower(), s1))
-    s1[-1] = inflect.engine().plural_noun(s1[-1])
     return '_'.join(s1)
 
 

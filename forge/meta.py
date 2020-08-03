@@ -35,3 +35,6 @@ class TableMeta(object):
     def __post_init__(self):
         if self.table is None:
             self.table = db_safe_name(self.datacls.__name__)
+
+    def save(self, dataobj):
+        print("saving", dataobj)

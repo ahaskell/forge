@@ -16,7 +16,7 @@ def discover_integration():
 
 
 @dataclass
-class Damp(object):
+class Forge(object):
     models: List['dataclass'] = field(default_factory=list)
     _integration: DatabaseAdapter = field(default=None)
 
@@ -60,7 +60,7 @@ class Damp(object):
         return diff
 
 
-damp = Damp()
+forge = Forge()
 
 
 def persist(cls=None, /, *, meta=None, schema=None, table=None):
@@ -83,5 +83,7 @@ def _process_class(datacls, tbl_meta, schema, table):
         datacls = dataclass(datacls)
     if tbl_meta is None:
         tbl_meta = TableMeta(datacls, schema, table)
-    damp.register(tbl_meta)
+    forge.register(tbl_meta)
+    if "save" not in datacls.__dict__:
+        datacls.save = lambda s, *a, **kw: tbl_meta.save(s)
     return datacls
